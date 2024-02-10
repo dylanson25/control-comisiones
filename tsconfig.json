@@ -1,5 +1,8 @@
 {
   "files": [],
+  "compilerOptions": {
+    "types": ["@oruga-ui/oruga-next/volar"]
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

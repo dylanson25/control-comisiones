@@ -1,4 +1,4 @@
-import './assets/main.css'
+import '@oruga-ui/theme-bootstrap/dist/bootstrap.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

@@ -2,6 +2,7 @@ import '@oruga-ui/theme-bootstrap/dist/bootstrap.css'
 import '@fortawesome/fontawesome-free/scss/fontawesome.scss'
 import '@fortawesome/fontawesome-free/scss/regular.scss'
 import '@fortawesome/fontawesome-free/scss/solid.scss'
+import '@/assets/sass/main.sass'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

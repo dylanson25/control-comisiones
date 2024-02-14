@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Field } from '@/components'
+</script>
 
 <template>
   <section id="login">
@@ -9,11 +11,13 @@
     <article class="login-form container">
       <section class="card">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's
-            content.
-          </p>
+          <h4 class="card-title text-center mb-0">Pancito</h4>
+          <h5 class="card-title text-center">Pancakes</h5>
+          <div class="d-flex w-100">
+            <img src="../assets/img/logoColor.png" class="img-fluid card-logo" alt="logo pancito" />
+          </div>
+          <Field type="email" icon="user" placeholder="Correo" />
+          <Field type="password" icon="lock" placeholder="Contraseña" password-reveal />
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </section>
@@ -43,10 +47,16 @@
     .card
       margin: auto
       max-width: 400px
+      .card-logo
+        width: 150px
+        margin: 0 auto
       // background: $pancake-pink
   @include media-breakpoint-down(lg)
     .login-image
       display: none
     .login-form
-      width: unset
+      width: 100%
+      .card
+        width: 100%
+        max-width: unset
 </style>

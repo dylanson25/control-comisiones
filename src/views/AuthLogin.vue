@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { Field } from '@/components'
+import { Field, Button } from '@/components'
+
+const onclick = (e: PointerEvent) => {
+  console.log(e)
+}
 </script>
 
 <template>
@@ -11,14 +15,23 @@ import { Field } from '@/components'
     <article class="login-form container">
       <section class="card">
         <div class="card-body">
-          <h4 class="card-title text-center mb-0">Pancito</h4>
+          <h3 class="card-title text-center mb-0">Pancito</h3>
           <h5 class="card-title text-center">Pancakes</h5>
-          <div class="d-flex w-100">
+          <div class="d-flex w-100 mb-4">
             <img src="../assets/img/logoColor.png" class="img-fluid card-logo" alt="logo pancito" />
           </div>
           <Field type="email" icon="user" placeholder="Correo" />
           <Field type="password" icon="lock" placeholder="Contraseña" password-reveal />
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="d-flex w-100">
+            <Button
+              class="mx-auto"
+              @click="onclick"
+              label="Iniciar Sesión"
+              variant="primary"
+              outlined
+              rounded
+            />
+          </div>
         </div>
       </section>
     </article>
@@ -50,7 +63,6 @@ import { Field } from '@/components'
       .card-logo
         width: 150px
         margin: 0 auto
-      // background: $pancake-pink
   @include media-breakpoint-down(lg)
     .login-image
       display: none
@@ -58,5 +70,5 @@ import { Field } from '@/components'
       width: 100%
       .card
         width: 100%
-        max-width: unset
+        max-width: 350px
 </style>

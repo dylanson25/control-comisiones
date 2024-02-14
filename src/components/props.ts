@@ -41,3 +41,26 @@ export interface inputProps extends fieldProps {
   'validation-message'?: string
   variant?: string | 'primary' | 'info' | 'success' | 'warning' | 'danger'
 }
+
+export interface buttonProps {
+  class?: string | string[]
+  disabled?: boolean
+  expanded?: boolean
+  iconLeft?: string
+  iconPack?: string
+  iconRight?: string
+  'icon-left'?: string
+  'icon-pack'?: string
+  'icon-right'?: string
+  inverted?: boolean
+  label?: string
+  loading?: boolean
+  nativeType?: string
+  'native-type'?: string
+  outlined?: boolean
+  role?: string
+  rounded?: boolean
+  size?: 'small' | 'medium' | 'large'
+  tag?: string | 'button' | 'a' | 'input' | 'router-link' | 'nuxt-link'
+  variant?: string | 'primary' | 'info' | 'success' | 'warning' | 'danger'
+}

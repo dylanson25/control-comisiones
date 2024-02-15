@@ -10,7 +10,7 @@ const {
   VITE_APP_ID_FIREBASE,
   VITE_APP_MEASUREMENT_ID_FIREBASE
 } = import.meta.env
-// TODO: Replace the following with your app's Firebase project configuration
+
 const firebaseConfig = {
   apiKey: VITE_APP_API_KEY_FIREBASE,
   authDomain: VITE_APP_AUTH_DOMAIN_FIREBASE,

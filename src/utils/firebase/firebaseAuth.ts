@@ -80,6 +80,10 @@ export const getUserData = async (): Promise<UserData> => {
   }
 }
 
+export const signOutWithEmail = async () => {
+  await auth.signOut()
+}
+
 interface UserData {
   uid?: string
   displayName?: string

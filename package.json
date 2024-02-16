@@ -17,10 +17,12 @@
     "@oruga-ui/oruga-next": "^0.8.3",
     "@oruga-ui/theme-bootstrap": "^0.5.4",
     "@popperjs/core": "^2.11.8",
+    "@vee-validate/yup": "^4.12.5",
     "bootstrap": "^5.3.2",
     "firebase": "^10.8.0",
     "pinia": "^2.1.7",
     "postcss": "^8.4.35",
+    "vee-validate": "^4.12.5",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },

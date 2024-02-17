@@ -4,7 +4,10 @@ const privateRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: () => import(/* webpackChunkName: "homeView" */ '@/views/HomeView.vue')
+    component: () => import(/* webpackChunkName: "homeView" */ '@/views/HomeView.vue'),
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 

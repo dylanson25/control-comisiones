@@ -4,7 +4,10 @@ const publicRoutes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    component: () => import(/* webpackChunkName: "authLogin" */ '@/views/AuthLogin.vue')
+    component: () => import(/* webpackChunkName: "authLogin" */ '@/views/AuthLogin.vue'),
+    meta: {
+      public: true
+    }
   }
 ]
 

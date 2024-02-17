@@ -5,7 +5,7 @@ import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import * as yup from 'yup'
 
-const { onLogIn } = useAuthStore()
+const authStore = useAuthStore()
 const { push } = useRouter()
 
 const { handleSubmit, isSubmitting, setErrors } = useForm({
@@ -17,7 +17,7 @@ const { handleSubmit, isSubmitting, setErrors } = useForm({
 const onSubmit = handleSubmit(async (values) => {
   try {
     const { email, password } = values
-    await onLogIn(email, password)
+    await authStore.onLogIn(email, password)
     push({ name: 'home' })
   } catch (error: any) {
     if (error.code === 'auth/invalid-credential')
@@ -27,6 +27,9 @@ const onSubmit = handleSubmit(async (values) => {
       })
     console.log(error)
   }
+})
+authStore.$subscribe((mutation, state) => {
+  if (state.userData.uid) push({ name: 'home' })
 })
 </script>
 
@@ -87,10 +90,16 @@ const onSubmit = handleSubmit(async (values) => {
     background-image: url('src/assets/img/fondo_login.png')
   .login-form
     width: 40%
+    height: 100%
     display: flex
     .card
+      min-height: 85%
       margin: auto
-      max-width: 400px
+      width: 100%
+      .card-body
+        display: flex
+        flex-direction: column
+        justify-content: center
       .card-logo
         width: 150px
         margin: 0 auto
@@ -102,7 +111,4 @@ const onSubmit = handleSubmit(async (values) => {
       display: none
     .login-form
       width: 100%
-      .card
-        width: 100%
-        max-width: 350px
 </style>

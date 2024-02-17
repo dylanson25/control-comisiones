@@ -2,11 +2,13 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  browserLocalPersistence,
+  onAuthStateChanged
 } from 'firebase/auth'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
-
 import { app, db } from './firebaseApp'
+import { useAuthStore } from '@/stores'
 
 interface userData {
   email: string
@@ -17,6 +19,20 @@ interface userData {
 }
 
 const auth = getAuth(app)
+
+onAuthStateChanged(auth, async (user) => {
+  const authStore = useAuthStore()
+  if (user) {
+    const data = await getUserData()
+    authStore.$patch({
+      userData: data
+    })
+  } else {
+    authStore.$patch({
+      userData: {}
+    })
+  }
+})
 
 const createUserDocument = async (data: userData, user: any) => {
   try {
@@ -49,6 +65,7 @@ export const signUpWithEmail = async (data: userData) => {
 }
 
 export const sigInpWithEmail = async (email: string, password: string): Promise<UserData> => {
+  await auth.setPersistence(browserLocalPersistence)
   const { user } = await signInWithEmailAndPassword(auth, email, password)
   const userDocument = await getUserDocument(user.uid)
 
@@ -61,6 +78,7 @@ export const sigInpWithEmail = async (email: string, password: string): Promise<
 }
 export const getUserData = async (): Promise<UserData> => {
   try {
+    await auth.authStateReady()
     const user = auth.currentUser
     if (!user) return {}
     const userDocument = await getUserDocument(user.uid)

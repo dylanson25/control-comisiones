@@ -17,6 +17,11 @@ const useAuthStore = defineStore('auth', {
   state: (): State => ({
     userData: {}
   }),
+  getters: {
+    isAuthenticated(state): boolean {
+      return !!state.userData.uid
+    }
+  },
   actions: {
     async onLogIn(email: string, pasword: string) {
       const data = await sigInpWithEmail(email, pasword)

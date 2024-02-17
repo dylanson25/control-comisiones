@@ -1,9 +1,33 @@
 <script setup lang="ts">
 import { Field, Button } from '@/components'
+import { useAuthStore } from '@/stores'
+import { useForm } from 'vee-validate'
+import { useRouter } from 'vue-router'
+import * as yup from 'yup'
 
-const onclick = (e: PointerEvent) => {
-  console.log(e)
-}
+const { onLogIn } = useAuthStore()
+const { push } = useRouter()
+
+const { handleSubmit, isSubmitting, setErrors } = useForm({
+  validationSchema: yup.object({
+    email: yup.string().required('Campo necesario').email('Correo electronico invalido'),
+    password: yup.string().required('Campo necesario')
+  })
+})
+const onSubmit = handleSubmit(async (values) => {
+  try {
+    const { email, password } = values
+    await onLogIn(email, password)
+    push({ name: 'home' })
+  } catch (error: any) {
+    if (error.code === 'auth/invalid-credential')
+      setErrors({
+        email: 'Contraseña o correo incorrectos',
+        password: 'Contraseña o correo incorrectos'
+      })
+    console.log(error)
+  }
+})
 </script>
 
 <template>
@@ -20,16 +44,23 @@ const onclick = (e: PointerEvent) => {
           <div class="d-flex w-100 mb-4">
             <img src="../assets/img/logoColor.png" class="img-fluid card-logo" alt="logo pancito" />
           </div>
-          <Field type="email" icon="user" placeholder="Correo" />
-          <Field type="password" icon="lock" placeholder="Contraseña" password-reveal />
+          <Field name="email" type="email" icon="user" placeholder="Correo" />
+          <Field
+            name="password"
+            type="password"
+            icon="lock"
+            placeholder="Contraseña"
+            password-reveal
+          />
           <div class="d-flex w-100">
             <Button
-              class="mx-auto"
-              @click="onclick"
+              class="login-button"
+              @click="onSubmit"
               label="Iniciar Sesión"
               variant="primary"
               outlined
               rounded
+              :loading="isSubmitting"
             />
           </div>
         </div>
@@ -63,6 +94,9 @@ const onclick = (e: PointerEvent) => {
       .card-logo
         width: 150px
         margin: 0 auto
+      .login-button
+        margin: 0 auto
+        width: 119px
   @include media-breakpoint-down(lg)
     .login-image
       display: none

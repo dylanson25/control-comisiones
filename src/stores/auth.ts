@@ -13,7 +13,7 @@ interface UserData {
   userType?: string
   userTypeId?: string
 }
-export const useAuthStore = defineStore('auth', {
+const useAuthStore = defineStore('auth', {
   state: (): State => ({
     userData: {}
   }),
@@ -32,3 +32,5 @@ export const useAuthStore = defineStore('auth', {
     }
   }
 })
+
+export default useAuthStore

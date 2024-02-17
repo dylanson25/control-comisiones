@@ -49,18 +49,14 @@ export const signUpWithEmail = async (data: userData) => {
 }
 
 export const sigInpWithEmail = async (email: string, password: string): Promise<UserData> => {
-  try {
-    const { user } = await signInWithEmailAndPassword(auth, email, password)
-    const userDocument = await getUserDocument(user.uid)
-    return {
-      uid: user.uid,
-      email: user.email ?? '',
-      displayName: user.displayName ?? '',
-      ...userDocument
-    }
-  } catch (error) {
-    console.log(error)
-    throw error
+  const { user } = await signInWithEmailAndPassword(auth, email, password)
+  const userDocument = await getUserDocument(user.uid)
+
+  return {
+    uid: user.uid,
+    email: user.email ?? '',
+    displayName: user.displayName ?? '',
+    ...userDocument
   }
 }
 export const getUserData = async (): Promise<UserData> => {

@@ -39,6 +39,8 @@ export interface inputProps extends fieldProps {
   'v-model'?: string | Number
   validationMessage?: string
   'validation-message'?: string
+  name?: string
+  required?: boolean
   variant?: string | 'primary' | 'info' | 'success' | 'warning' | 'danger'
 }
 

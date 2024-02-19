@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Field, Button } from '@/components'
 import { useAuthStore } from '@/stores'
-import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
+import { useForm } from 'vee-validate'
 import * as yup from 'yup'
 
 const authStore = useAuthStore()
@@ -27,9 +27,6 @@ const onSubmit = handleSubmit(async (values) => {
       })
     console.log(error)
   }
-})
-authStore.$subscribe((mutation, state) => {
-  if (state.userData.uid) push({ name: 'home' })
 })
 </script>
 

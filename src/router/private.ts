@@ -8,7 +8,24 @@ const privateRoutes: Array<RouteRecordRaw> = [
     meta: {
       requiresAuth: true,
       asideMenu: true
-    }
+    },
+    children: [
+      {
+        path: '/productos',
+        name: 'products',
+        component: () => import(/* webpackChunkName: "products" */ '@/views/Products.vue')
+      },
+      {
+        path: '/ventas',
+        name: 'sellings',
+        component: () => import(/* webpackChunkName: "products" */ '@/views/Sellings.vue')
+      },
+      {
+        path: '/estadisticas',
+        name: 'stats',
+        component: () => import(/* webpackChunkName: "products" */ '@/views/Stats.vue')
+      }
+    ]
   }
 ]
 

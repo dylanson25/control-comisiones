@@ -6,7 +6,8 @@ const privateRoutes: Array<RouteRecordRaw> = [
     name: 'home',
     component: () => import(/* webpackChunkName: "homeView" */ '@/views/HomeView.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      asideMenu: true
     }
   }
 ]

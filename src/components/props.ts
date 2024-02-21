@@ -66,3 +66,18 @@ export interface buttonProps {
   tag?: string | 'button' | 'a' | 'input' | 'router-link' | 'nuxt-link'
   variant?: string | 'primary' | 'info' | 'success' | 'warning' | 'danger'
 }
+export interface badgeProps {
+  rounded?: boolean
+  size?: '1' | '2' | '3' | '4' | '5' | '6'
+  label?: string
+  variant?:
+    | string
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'light'
+    | 'dark'
+}

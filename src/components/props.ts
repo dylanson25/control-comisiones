@@ -81,3 +81,21 @@ export interface badgeProps {
     | 'light'
     | 'dark'
 }
+
+export interface ProductCardProps {
+  data: Product
+}
+export interface Product {
+  panques: number
+  edited_at: dateObject
+  precio: number
+  created_at: dateObject
+  toppings_included: number
+  uid: string
+  names?: [string]
+}
+
+interface dateObject {
+  seconds: number
+  nanoseconds: number
+}

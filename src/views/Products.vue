@@ -20,8 +20,9 @@ onBeforeMount(async () => {
   <h3>Productos</h3>
   <div class="scroll">
     <section class="products">
+      <!-- AGREGAR LOADING -->
       <template v-for="product in products" :key="product.uid">
-        <ProductCard />
+        <ProductCard :data="product" />
       </template>
     </section>
   </div>
@@ -37,14 +38,3 @@ onBeforeMount(async () => {
   grid-template-columns: repeat(auto-fit, minmax(286px, calc(25% - 12px)))
   place-content: center
 </style>
-<!-- 
-  TODO: Crear card de producto
-    [ ]:  Paquetes de 15 + 2 toppings - $55
-    [ ]:  Paquetes de 25 + 3 toppings - $90
-    [ ]:  Paquetes de 50 + 4 toppings - $150
-    [ ]:  pancibrocheta 5 pancitos, fruta y chocolate - $25
-    [ ]:  topping extra 5 pesos
-      Pueden tener varios toppings
-    [ ]: fresa, platano, nuez, coco tostado, galleta oreo, lechera, mermelada, cajeta, chkocolate, miel de maple
-    
- -->

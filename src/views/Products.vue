@@ -1,7 +1,18 @@
 <script setup lang="ts">
 import { ProductCard } from '@/components'
+import { useProductStore } from '@/stores'
+import { onBeforeMount, reactive } from 'vue'
 defineOptions({
   inheritAttrs: false
+})
+
+const { getProducts, products } = useProductStore()
+const loading = reactive({ products: false })
+
+onBeforeMount(async () => {
+  loading.products = true
+  await getProducts()
+  loading.products = false
 })
 </script>
 
@@ -9,12 +20,9 @@ defineOptions({
   <h3>Productos</h3>
   <div class="scroll">
     <section class="products">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      <template v-for="product in products" :key="product.uid">
+        <ProductCard />
+      </template>
     </section>
   </div>
 </template>

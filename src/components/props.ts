@@ -87,15 +87,15 @@ export interface ProductCardProps {
 }
 export interface Product {
   panques: number
-  edited_at: dateObject
+  edited_at: TimestampObject
   precio: number
-  created_at: dateObject
+  created_at: TimestampObject
   toppings_included: number
   uid: string
   names?: [string]
 }
 
-interface dateObject {
+export interface TimestampObject {
   seconds: number
   nanoseconds: number
 }

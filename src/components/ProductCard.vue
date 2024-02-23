@@ -4,11 +4,12 @@ import { useTexTransform } from '@/utils/composables'
 import { Badge } from '@/components'
 import { toRefs, computed } from 'vue'
 
-const { formatPrice } = useTexTransform()
+const { formatPrice, formatFirebaseUnitTime } = useTexTransform()
 const props = defineProps<ProductCardProps>()
 const { data } = toRefs(props)
 
 const price = computed(() => formatPrice(props.data.precio))
+const lastUpdated = computed(() => formatFirebaseUnitTime(props.data.edited_at))
 </script>
 
 <template>
@@ -30,7 +31,7 @@ const price = computed(() => formatPrice(props.data.precio))
     </div>
     <div class="card-footer">
       <!-- TODO: formato de ultima actualizacion -->
-      <small class="text-body-secondary">last updated 3 mins ago</small>
+      <small class="text-body-secondary"> Última actualización {{ lastUpdated }}</small>
     </div>
   </article>
 </template>

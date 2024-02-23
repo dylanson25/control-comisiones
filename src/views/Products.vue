@@ -19,8 +19,8 @@ onBeforeMount(async () => {
 <template>
   <h3>Productos</h3>
   <div class="scroll">
-    <section class="products">
-      <!-- AGREGAR LOADING -->
+    <o-loading v-if="loading.products" :active="loading.products" />
+    <section v-else class="products">
       <template v-for="product in products" :key="product.uid">
         <ProductCard :data="product" />
       </template>

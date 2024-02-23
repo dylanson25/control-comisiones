@@ -1,24 +1,27 @@
 <script setup lang="ts">
 import type { ProductCardProps } from '@/components/props'
+import { useTexTransform } from '@/utils/composables'
 import { Badge } from '@/components'
-import { toRefs } from 'vue'
+import { toRefs, computed } from 'vue'
+
+const { formatPrice } = useTexTransform()
 const props = defineProps<ProductCardProps>()
 const { data } = toRefs(props)
+
+const price = computed(() => formatPrice(props.data.precio))
 </script>
 
 <template>
   <article class="card">
     <div class="card-body">
-      <!-- TODO: Poner la tag de pk -->
       <Badge :label="data.uid" size="6" variant="secondary" />
       <hr />
       <p v-if="data.panques" class="mb-1">
         <span class="fw-bolder">Hotcakes: </span>
         <small>{{ data.panques }} pz</small>
       </p>
-      <!-- TODO: agregar formato $15.00 -->
       <p class="mb-1">
-        <span class="fw-bolder">Precio: </span> <small>{{ data.precio }}</small>
+        <span class="fw-bolder">Precio: </span> <small>{{ price }}</small>
       </p>
       <p class="mb-1">
         <span class="fw-bolder">toppings incluidos: </span>

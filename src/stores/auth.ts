@@ -1,10 +1,5 @@
 /* eslint-disable no-unused-labels */
-import {
-  sigInpWithEmail,
-  getUserData,
-  signOutWithEmail,
-  getAuthState
-} from '@/utils/firebase/firebaseAuth'
+import { sigInpWithEmail, getUserData, signOutWithEmail } from '@/utils/firebase/firebaseAuth'
 import { defineStore } from 'pinia'
 
 interface State {
@@ -37,7 +32,6 @@ const useAuthStore = defineStore('auth', {
     },
     async getUserData() {
       const data = await getUserData()
-      console.log(data)
       if (data.uid) this.auth = 'authenticated'
       this.userData = data
     },
@@ -45,9 +39,6 @@ const useAuthStore = defineStore('auth', {
       await signOutWithEmail()
       this.auth = 'no-authenticated'
       this.userData = {}
-    },
-    async checkAuth() {
-      if (getAuthState() === 'authenticated') this.auth = 'authenticated'
     }
   }
 })

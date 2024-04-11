@@ -6,7 +6,7 @@ const authStore = useAuthStore()
 const { push } = useRouter()
 
 authStore.$subscribe((mutation, state) => {
-  if (state.auth === 'authenticated') push({ name: 'home' })
+  if (state.auth === 'authenticated') push({ path: '/dashboard' })
 })
 </script>
 

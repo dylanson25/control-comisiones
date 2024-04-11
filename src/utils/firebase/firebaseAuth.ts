@@ -25,13 +25,14 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     const data = await getUserData()
     authStore.$patch({
+      auth: 'authenticated',
       userData: data
     })
-  } else {
+  } else
     authStore.$patch({
+      auth: 'no-authenticated',
       userData: {}
     })
-  }
 })
 
 const createUserDocument = async (data: userData, user: any) => {
@@ -92,10 +93,6 @@ export const getUserData = async (): Promise<UserData> => {
     console.log(error)
     throw error
   }
-}
-
-export const getAuthState = (): 'authenticated' | 'no-authenticated' => {
-  return auth.currentUser?.uid ? 'authenticated' : 'no-authenticated'
 }
 
 export const signOutWithEmail = async () => await auth.signOut()

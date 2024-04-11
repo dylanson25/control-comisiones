@@ -4,10 +4,10 @@ import { useAuthStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
+import { onBeforeMount } from 'vue'
 
 const authStore = useAuthStore()
 const { push } = useRouter()
-
 const { handleSubmit, isSubmitting, setErrors } = useForm({
   validationSchema: yup.object({
     email: yup.string().required('Campo necesario').email('Correo electronico invalido'),
@@ -28,6 +28,7 @@ const onSubmit = handleSubmit(async (values) => {
     console.log(error)
   }
 })
+onBeforeMount(() => authStore.checkAuth())
 </script>
 
 <template>

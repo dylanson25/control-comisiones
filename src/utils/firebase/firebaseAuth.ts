@@ -94,9 +94,11 @@ export const getUserData = async (): Promise<UserData> => {
   }
 }
 
-export const signOutWithEmail = async () => {
-  await auth.signOut()
+export const getAuthState = (): 'authenticated' | 'no-authenticated' => {
+  return auth.currentUser?.uid ? 'authenticated' : 'no-authenticated'
 }
+
+export const signOutWithEmail = async () => await auth.signOut()
 
 interface UserData {
   uid?: string

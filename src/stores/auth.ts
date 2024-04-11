@@ -1,8 +1,14 @@
 /* eslint-disable no-unused-labels */
-import { sigInpWithEmail, getUserData, signOutWithEmail } from '@/utils/firebase/firebaseAuth'
+import {
+  sigInpWithEmail,
+  getUserData,
+  signOutWithEmail,
+  getAuthState
+} from '@/utils/firebase/firebaseAuth'
 import { defineStore } from 'pinia'
 
 interface State {
+  auth: 'authenticated' | 'no-authenticated' | 'authenticating'
   userData: UserData
 }
 
@@ -15,25 +21,33 @@ interface UserData {
 }
 const useAuthStore = defineStore('auth', {
   state: (): State => ({
+    auth: 'no-authenticated',
     userData: {}
   }),
   getters: {
     isAuthenticated(state): boolean {
-      return !!state.userData.uid
+      return state.auth === 'authenticated'
     }
   },
   actions: {
     async onLogIn(email: string, pasword: string) {
       const data = await sigInpWithEmail(email, pasword)
+      this.auth = 'authenticated'
       this.userData = data
     },
     async getUserData() {
       const data = await getUserData()
+      console.log(data)
+      if (data.uid) this.auth = 'authenticated'
       this.userData = data
     },
     async onSignOut() {
       await signOutWithEmail()
+      this.auth = 'no-authenticated'
       this.userData = {}
+    },
+    async checkAuth() {
+      if (getAuthState() === 'authenticated') this.auth = 'authenticated'
     }
   }
 })

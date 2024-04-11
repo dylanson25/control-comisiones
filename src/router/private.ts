@@ -11,19 +11,14 @@ const privateRoutes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: '/productos',
-        name: 'products',
-        component: () => import(/* webpackChunkName: "products" */ '@/views/Products.vue')
-      },
-      {
-        path: '/ventas',
-        name: 'sellings',
-        component: () => import(/* webpackChunkName: "products" */ '@/views/Sellings.vue')
-      },
-      {
-        path: '/estadisticas',
+        path: '/stats',
         name: 'stats',
-        component: () => import(/* webpackChunkName: "products" */ '@/views/Stats.vue')
+        component: () => import(/* webpackChunkName: "stats" */ '@/views/Stats.vue')
+      },
+      {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: () => import(/* webpackChunkName: "products" */ '@/views/Dashboard.vue')
       }
     ]
   }
